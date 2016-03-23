@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Webstack of Love Demo</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+</head>
+<body>
+    <form data-bind="submit: sendCreate">
+        Task:
+        <input type="text" name="title" id="title" data-bind="value: addItemLabel, valueUpdate: 'afterkeydown'" />
+        <input type="submit" title="Add a new item" value="Add" disabled="disabled" data-bind="enable: addItemLabel().length > 0" />
+    </form>
+    <section data-bind="visible: items().length > 0" style="display: none">
+        <h1>Items in Progress</h1>
+        <table data-bind="foreach: items">
+            <tr>
+                <td>
+                    <input type="checkbox" data-bind="checked: finished" />
+                    <span data-bind="text: Label, css: { finished: finished }"></span>
+                </td>
+                <td><input type="button" value="Delete" data-bind="click: remove" /></td>
+            </tr>
+        </table>
+    </section>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/knockout-2.1.0.js"></script>
+<script type="text/javascript" src="js/jquery.signalR-0.5.0.js"></script>
+<script type="text/javascript" src="signalr/hubs"></script>
+<script type="text/javascript" src="js/todo.js"></script>
+</html>
